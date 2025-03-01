@@ -1,6 +1,6 @@
 {
   "name": "@visibelle/visibelle-models",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -20,7 +20,6 @@
     "url": "https://github.com/visibelle/visibelle-models/issues"
   },
   "homepage": "https://github.com/visibelle/visibelle-models#readme",
-
   "dependencies": {
     "decimal.js": "^10.5.0",
     "typeorm": "^0.3.20",
