@@ -1,0 +1,34 @@
+{
+  "name": "@visibelle/visibelle-models",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "exit 0",
+    "prepublishOnly": "tsc",
+    "build": "tsc",
+    "start": "tsc-watch",
+    "minor": "npm version patch && tsc && npm publish && git push",
+    "minor-quick": "git add . && git commit -m 'auto' && npm version patch && tsc && npm publish && git push"
+  },
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "@visibelle:registry": "https://npm.pkg.github.com"
+  },
+  "bugs": {
+    "url": "https://github.com/visibelle/visibelle-models/issues"
+  },
+  "homepage": "https://github.com/visibelle/visibelle-models#readme",
+
+  "dependencies": {
+    "decimal.js": "^10.5.0",
+    "typeorm": "^0.3.20",
+    "typescript": "^5.8.2",
+    "uniqid": "^5.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.8",
+    "@types/uniqid": "^5.3.4"
+  }
+}
