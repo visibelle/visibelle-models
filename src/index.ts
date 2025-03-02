@@ -3,7 +3,7 @@ import Customer from "./general/Customer";
 import Document from "./general/Document";
 import User from "./general/User";
 import  { UserCoreRole, DefaultLocales } from "./general/User";
-
+import Token from "./general/Token";
 
 export {
     Address,
@@ -11,5 +11,6 @@ export {
     Document,
     User,
     UserCoreRole,
-    DefaultLocales
+    DefaultLocales,
+    Token
 }
