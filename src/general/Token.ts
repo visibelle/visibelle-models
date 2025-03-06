@@ -5,6 +5,7 @@ export enum TokenType {
     setPassword = "SETPASSWORD",
     apiKey = "APIKEY",
     confirmEmail = "CONFIRMEMAIL",
+    adminLoginToken= "ADMINLOGINTOKEN",
 }
 
 
