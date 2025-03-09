@@ -99,7 +99,7 @@ export default class User extends BaseModel {
     @ManyToOne(() => Customer, customer => customer.users)
     public customer: Customer;
     @Column({
-        nullable: false
+        nullable: true
     })
     public customerId: number;
 
