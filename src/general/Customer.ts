@@ -35,7 +35,10 @@ export default class Customer extends BaseModel {
     nullable: false,
   })
   public companyName: string;
-
+  @Column({
+    nullable: true,
+  })
+  public companyDomainUrl: string;
   @Column()
   public ownerFirstName: string;
 
@@ -64,6 +67,7 @@ export default class Customer extends BaseModel {
     vatId?: string,
     IBAN?: string,
     companyInfoEmail?: string,
+    companyDomainUrl?: string
   ) {
     super("cust");
     this.companyName = companyName;
@@ -76,7 +80,7 @@ export default class Customer extends BaseModel {
     this.vatId = vatId;
     this.IBAN = IBAN;
     this.companyInfoEmail = companyInfoEmail;
-    
+    this.companyDomainUrl = companyDomainUrl;
   }
 
   public toJSON() {
@@ -96,6 +100,7 @@ export default class Customer extends BaseModel {
       companyInfoEmail: this.companyInfoEmail,
       ownerFirstName: this.ownerFirstName,
       ownerLastName: this.ownerLastName,
+      companyDomainUrl: this.companyDomainUrl,
       address: this.address ? this.address.toJSON() : null,
       documents: this.documents
         ? this.documents.map((doc) => doc.toJSON())
