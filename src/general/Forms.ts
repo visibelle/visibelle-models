@@ -35,16 +35,22 @@ export default class Form extends BaseModel {
   public type: FormTypes;
 
   @Column({
-    type: "simple-json", // or "jsonb" for PostgreSQL
+    type: "text",
     nullable: true,
-    default: "{}",
+    transformer: {
+      to: (value: any) => value ? JSON.stringify(value) : '{}',
+      from: (value: string) => value ? JSON.parse(value) : {}
+    }
   })
   public data: Record<string, any>;
 
   @Column({
-    type: "simple-json", // or "jsonb" for PostgreSQL
+    type: "text",
     nullable: true,
-    default: "[]",
+    transformer: {
+      to: (value: any) => value ? JSON.stringify(value) : '[]',
+      from: (value: string) => value ? JSON.parse(value) : []
+    }
   })
   public attachments: string[]; // or use a more specific type
 
