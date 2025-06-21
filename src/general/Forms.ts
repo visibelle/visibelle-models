@@ -35,14 +35,14 @@ export default class Form extends BaseModel {
   public type: FormTypes;
 
   @Column({
-    type: "json", // or "jsonb" for PostgreSQL
+    type: "simple-json", // or "jsonb" for PostgreSQL
     nullable: true,
     default: {},
   })
   public data: Record<string, any>;
 
   @Column({
-    type: "json", // or "jsonb" for PostgreSQL
+    type: "simple-json", // or "jsonb" for PostgreSQL
     nullable: true,
     default: [],
   })
