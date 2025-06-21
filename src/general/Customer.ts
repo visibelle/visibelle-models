@@ -29,6 +29,8 @@ export default class Customer extends BaseModel {
   @Column()
   public ownerEmail: string;
 
+  @Column()
+  public companyInfoEmail: string;
   @Column({
     nullable: false,
   })
@@ -57,11 +59,11 @@ export default class Customer extends BaseModel {
     ownerEmail: string,
     ownerFirstName: string,
     ownerLastName: string,
-    companyForm: string,
     phoneFix?: string,
     phoneMobile?: string,
     vatId?: string,
-    IBAN?: string
+    IBAN?: string,
+    companyInfoEmail?: string,
   ) {
     super("cust");
     this.companyName = companyName;
@@ -73,6 +75,8 @@ export default class Customer extends BaseModel {
     this.phoneMobile = phoneMobile;
     this.vatId = vatId;
     this.IBAN = IBAN;
+    this.companyInfoEmail = companyInfoEmail;
+    
   }
 
   public toJSON() {
@@ -89,6 +93,7 @@ export default class Customer extends BaseModel {
       vatId: this.vatId,
       IBAN: this.IBAN,
       ownerEmail: this.ownerEmail,
+      companyInfoEmail: this.companyInfoEmail,
       ownerFirstName: this.ownerFirstName,
       ownerLastName: this.ownerLastName,
       address: this.address ? this.address.toJSON() : null,
