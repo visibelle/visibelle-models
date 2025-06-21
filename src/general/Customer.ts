@@ -49,7 +49,10 @@ export default class Customer extends BaseModel {
   @OneToMany(() => User, (user) => user.customer)
   public users: User[];
 
-  @OneToOne(() => Address, (address) => address.customer)
+  @OneToOne(() => Address, (address) => address.customer, {
+    cascade: true, // This will automatically save the address when saving customer
+    onDelete: "CASCADE", // Optional: delete address when customer is deleted
+  })
   @JoinColumn({ name: "addressId" })
   public address: Address;
 
