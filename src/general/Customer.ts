@@ -40,9 +40,6 @@ export default class Customer extends BaseModel {
   @Column()
   public ownerLastName: string;
 
-  @Column()
-  public companyForm: string;
-
   // Relationships
   @OneToMany(() => User, (user) => user.customer)
   public users: User[];
@@ -72,7 +69,6 @@ export default class Customer extends BaseModel {
     this.ownerEmail = ownerEmail;
     this.ownerFirstName = ownerFirstName;
     this.ownerLastName = ownerLastName;
-    this.companyForm = companyForm;
     this.phoneFix = phoneFix;
     this.phoneMobile = phoneMobile;
     this.vatId = vatId;
@@ -95,7 +91,6 @@ export default class Customer extends BaseModel {
       ownerEmail: this.ownerEmail,
       ownerFirstName: this.ownerFirstName,
       ownerLastName: this.ownerLastName,
-      companyForm: this.companyForm,
       address: this.address ? this.address.toJSON() : null,
       documents: this.documents
         ? this.documents.map((doc) => doc.toJSON())
