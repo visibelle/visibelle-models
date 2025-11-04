@@ -25,10 +25,12 @@ export default class Config extends BaseModel {
 
   // JSON kolom
   @Column({
-    // Postgres: "jsonb", MySQL: "json"
-    type: "json",
-    nullable: false,
-    default: "'{}'" ,
+    type: "text",
+    nullable: true,
+    transformer: {
+      to: (value: any) => value ? JSON.stringify(value) : '{}',
+      from: (value: string) => value ? JSON.parse(value) : {}
+    }
   })
   public data: Record<string, any>;
 
