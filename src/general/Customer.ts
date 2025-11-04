@@ -3,6 +3,7 @@ import { Entity, Column, OneToMany, OneToOne, JoinColumn } from "typeorm";
 import User from "./User";
 import Address from "./Address";
 import Document from "./Document";
+import Config from "./Config";
 
 @Entity({
   name: "customers",
@@ -59,6 +60,9 @@ export default class Customer extends BaseModel {
   @OneToMany(() => Document, (document) => document.customer)
   public documents: Document[];
 
+  @OneToMany(() => Config, (config) => config.customer, { cascade: false })
+public configs: Config[];
+
   constructor(
     companyName: string,
     activity: string,
@@ -105,6 +109,7 @@ export default class Customer extends BaseModel {
       ownerLastName: this.ownerLastName,
       companyDomainUrl: this.companyDomainUrl,
       address: this.address ? this.address.toJSON() : null,
+      configs: this.configs ? this.configs.map(c => c.toJSON()) : [],
       documents: this.documents
         ? this.documents.map((doc) => doc.toJSON())
         : [],
