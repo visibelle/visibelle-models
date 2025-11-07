@@ -18,6 +18,9 @@ export default class Document extends BaseModel {
   @Column()
   public fileSize: number;
 
+  @Column()
+  public fileName: string;
+
   // Relationships
   @ManyToOne(() => Customer, (customer) => customer.documents)
   public customer: Customer;
@@ -25,14 +28,21 @@ export default class Document extends BaseModel {
   @Column()
   public customerId: number;
 
-  constructor(customerId: number, type: string, url: string, fileSize: number, extraInfo?: string) {
+  constructor(
+    customerId: number,
+    type: string,
+    url: string,
+    fileSize: number,
+    extraInfo?: string,
+    fileName?: string
+  ) {
     super("doc");
     this.customerId = customerId;
     this.type = type;
     this.url = url;
     this.fileSize = fileSize;
     this.extraInfo = extraInfo;
-
+    this.fileName = fileName;
   }
 
   public toJSON() {
@@ -46,6 +56,7 @@ export default class Document extends BaseModel {
       extraInfo: this.extraInfo,
       url: this.url,
       fileSize: this.fileSize,
+      fileName: this.fileName,
     };
   }
 }
