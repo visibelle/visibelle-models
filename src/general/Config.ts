@@ -7,19 +7,19 @@ export enum ConfigType {
   CONTACTFORM = "CONTACTFORM",
   BOOKINGCONFIRM = "BOOKINGCONFIRM",
 }
-interface CustomerConfigData {
+export interface CustomerConfigData {
   logo: string;
   primaryColor: string;
   secondaryColor: string;
 }
 
-interface ContactFormConfigData {
+export interface ContactFormConfigData {
   sendToEmails: string[];
   replyToSender: boolean;
   replyText: string;
 }
 
-interface BookingConfirmConfigData {
+export interface BookingConfirmConfigData {
   sendToEmails: string[];
   replyToSender: boolean;
   replyText: string;
