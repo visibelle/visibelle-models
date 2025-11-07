@@ -1,10 +1,4 @@
-import {
-  Entity,
-  Column,
-  ManyToOne,
-  JoinColumn,
-  Index,
-} from "typeorm";
+import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 import BaseModel from "../BaseModel";
 import Customer from "./Customer";
 
@@ -13,28 +7,49 @@ export enum ConfigType {
   CONTACTFORM = "CONTACTFORM",
   BOOKINGCONFIRM = "BOOKINGCONFIRM",
 }
+interface CustomerConfigData {
+  logo: string;
+  primaryColor: string;
+  secondaryColor: string;
+}
 
+interface ContactFormConfigData {
+  sendToEmails: string[];
+  replyToSender: boolean;
+  replyText: string;
+}
+
+interface BookingConfirmConfigData {
+  sendToEmails: string[];
+  replyToSender: boolean;
+  replyText: string;
+}
+
+export type ConfigDataMap = {
+  [ConfigType.CUSTOMER]: CustomerConfigData;
+  [ConfigType.CONTACTFORM]: ContactFormConfigData;
+  [ConfigType.BOOKINGCONFIRM]: BookingConfirmConfigData;
+};
 @Entity({ name: "configs" })
-export default class Config extends BaseModel {
-  // Enum kolom
+export default class Config<
+  T extends ConfigType = ConfigType
+> extends BaseModel {
   @Column({
-    type: "enum", // Postgres & MySQL: gebruik enum
+    type: "enum",
     enum: ConfigType,
   })
-  public type: ConfigType;
+  public type: T;
 
-  // JSON kolom
   @Column({
     type: "text",
     nullable: true,
     transformer: {
-      to: (value: any) => value ? JSON.stringify(value) : '{}',
-      from: (value: string) => value ? JSON.parse(value) : {}
-    }
+      to: (value: any) => (value ? JSON.stringify(value) : "{}"),
+      from: (value: string) => (value ? JSON.parse(value) : {}),
+    },
   })
-  public data: Record<string, any>;
+  public data!: ConfigDataMap[T]; // 👈 Type-safe JSON field
 
-  // FK naar customer
   @Column()
   public customerId: number;
 
