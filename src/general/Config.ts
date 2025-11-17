@@ -59,6 +59,12 @@ export default class Config<
   @JoinColumn({ name: "customerId" })
   public customer: Customer;
 
+  constructor(type: T, data?: ConfigDataMap[T], customerId?: number) {
+    super("cfg");
+    this.type = type;
+    if (data !== undefined) this.data = data;
+    if (customerId !== undefined) this.customerId = customerId;
+  }
   public toJSON() {
     return {
       id: this.id,
