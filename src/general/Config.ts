@@ -16,13 +16,11 @@ export interface CustomerConfigData {
 export interface ContactFormConfigData {
   sendToEmails: string[];
   replyToSender: boolean;
-  replyText: string;
 }
 
 export interface BookingConfirmConfigData {
   sendToEmails: string[];
   replyToSender: boolean;
-  replyText: string;
 }
 
 export type ConfigDataMap = {
