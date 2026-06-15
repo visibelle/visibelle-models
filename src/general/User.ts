@@ -141,6 +141,13 @@ export default class User extends BaseModel {
             expoPushToken: this.expoPushToken,
             emailConfirmed: this.emailConfirmed,
             subscribeNews: this.subscribeNews,
+            customerId: this.customerId ?? null,
+            customer: this.customer
+                ? {
+                      id: this.customer.id,
+                      companyName: this.customer.companyName,
+                  }
+                : null,
         };
     }
 }
